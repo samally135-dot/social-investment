@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>社會投資行動人格測驗｜測出你的 16 型助人超能力</title>
+  <style>
+    :root {
+      --bg-cream: #F8FAFC;
+      --bg-card: #FFFFFF;
+      --mint-primary: #34B3A0;
+      --mint-dark: #238C7C;
+      --mint-light: #E6F7F4;
+      --sky-primary: #5BA4CF;
+      --sky-light: #EAF4FB;
+      --coral-accent: #F28482;
+      --amber-accent: #F6BD60;
+      --text-main: #1E293B;
+      --text-sub: #64748B;
+      --border-soft: #E2E8F0;
+      --shadow-card: 0 12px 30px rgba(30, 41, 59, 0.07);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      background: linear-gradient(155deg, #E8F6F3 0%, #F8FAFC 45%, #EAF3FA 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      padding-bottom: 32px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 4px 16px;
+    }
+
+    .brand-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--mint-dark);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border-soft);
+      color: var(--text-sub);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+      animation: fadeSlideUp 0.3s ease forwards;
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 28px 22px;
+      box-shadow: var(--shadow-card);
+      border: 1px solid #FFFFFF;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--mint-light);
+      color: var(--mint-dark);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .hero-desc {
+      font-size: 15px;
+      color: var(--text-sub);
+      margin-bottom: 22px;
+    }
+
+    .dim-preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .dim-pill {
+      background: #F8FAFC;
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 12px;
+    }
+
+    .dim-pill-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--mint-dark);
+      margin-bottom: 4px;
+    }
+
+    .dim-pill-sub {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, var(--mint-primary), #2A9D8F);
+      color: #FFFFFF;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 0 var(--mint-dark), 0 10px 20px rgba(52, 179, 160, 0.25);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-primary:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 var(--mint-dark);
+    }
+
+    .btn-secondary {
+      width: 100%;
+      background: #F1F5F9;
+      color: var(--text-main);
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .progress-wrap {
+      margin-bottom: 18px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-bottom: 8px;
+    }
+
+    .stage-badge {
+      background: var(--sky-light);
+      color: #2B6CB0;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 8.33%;
+      background: linear-gradient(90deg, var(--mint-primary), var(--sky-primary));
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .question-box {
+      touch-action: pan-y;
+      user-select: none;
+    }
+
+    .q-number {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--mint-primary);
+      margin-bottom: 6px;
+    }
+
+    .q-text {
+      font-size: 20px;
+      font-weight: 800;
+      line-height: 1.45;
+      color: var(--text-main);
+      margin-bottom: 22px;
+      min-height: 58px;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      width: 100%;
+      text-align: left;
+      background: #F8FAFC;
+      border: 2px solid var(--border-soft);
+      border-radius: 18px;
+      padding: 18px 16px;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .option-btn.selected {
+      background: var(--mint-light);
+      border-color: var(--mint-primary);
+      box-shadow: 0 6px 16px rgba(52, 179, 160, 0.16);
+    }
+
+    .option-letter {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: #FFFFFF;
+      border: 1.5px solid var(--border-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--text-sub);
+    }
+
+    .option-btn.selected .option-letter {
+      background: var(--mint-primary);
+      border-color: var(--mint-primary);
+      color: #FFFFFF;
+    }
+
+    .option-copy {
+      font-size: 15.5px;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .nav-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 22px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--border-soft);
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-sub);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .swipe-hint {
+      font-size: 12px;
+      color: #94A3B8;
+    }
+
+    .result-header {
+      text-align: center;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-soft);
+      margin-bottom: 20px;
+    }
+
+    .avatar-ring {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 12px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, var(--mint-light), var(--sky-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(52, 179, 160, 0.15);
+    }
+
+    .result-code {
+      display: inline-block;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--mint-dark);
+      line-height: 1.2;
+    }
+
+    .result-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-top: 4px;
+    }
+
+    .result-tagline {
+      font-size: 14px;
+      color: var(--text-sub);
+      margin-top: 6px;
+    }
+
+    .spectrum-section {
+      margin-bottom: 22px;
+    }
+
+    .section-label {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .spectrum-item {
+      margin-bottom: 14px;
+    }
+
+    .spectrum-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .spectrum-labels span.win {
+      color: var(--mint-dark);
+    }
+
+    .spectrum-labels span.lose {
+      color: #94A3B8;
+    }
+
+    .spectrum-bar {
+      height: 10px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .spectrum-fill-left {
+      background: var(--mint-primary);
+      height: 100%;
+      transition: width 0.5s ease;
+    }
+
+    .spectrum-fill-right {
+      background: var(--sky-primary);
+      height: 100%;
+      transition: width 0.5s ease;
+    }
+
+    .detail-box {
+      background: #F8FAFC;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .detail-box h4 {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--mint-dark);
+      margin-bottom: 6px;
+    }
+
+    .detail-box p {
+      font-size: 14px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .theory-box {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: 16px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .theory-box h4 {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #B45309;
+      margin-bottom: 4px;
+    }
+
+    .theory-box p {
+      font-size: 13.5px;
+      color: #78350F;
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      z-index: 100;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .modal-card {
+      background: #FFFFFF;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 24px;
+      padding: 22px 18px;
+      margin: 20px auto;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .dex-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .dex-item {
+      background: #F8FAFC;
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 12px;
+      cursor: pointer;
+    }
+
+    .dex-code {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--mint-dark);
+    }
+
+    .dex-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 2px 0;
+    }
+
+    .dex-short {
+      font-size: 12px;
+      color: var(--text-sub);
+      line-height: 1.4;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1E293B;
+      color: #FFFFFF;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 200;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="app-shell">
+  <header class="top-bar">
+    <div class="brand-tag">🌱 社會投資行動人格</div>
+    <button type="button" class="btn-ghost" id="openDexBtn">📖 16型圖鑑</button>
+  </header>
+
+  <section id="homeScreen" class="screen active">
+    <div class="card">
+      <span class="hero-badge">⏱️ 3 分鐘日常直覺測驗 · 共 12 題</span>
+      <h1 class="hero-title">面對需要幫忙的人，你是哪一種行動派？</h1>
+      <p class="hero-desc">
+        不用背任何社會學理論！透過 12 個貼近日常的生活選擇題，測出你在「社會投資模型」中的 4 字母專屬角色卡與助人超能力。
+      </p>
+
+      <div class="dim-preview-grid">
+        <div class="dim-pill">
+          <div class="dim-pill-title">第一關｜介入時機</div>
+          <div class="dim-pill-sub">P 提前練功 vs R 先給撐傘</div>
+        </div>
+        <div class="dim-pill">
+          <div class="dim-pill-title">第二關｜推動路徑</div>
+          <div class="dim-pill-sub">S 改好規則 vs I 一對一帶</div>
+        </div>
+        <div class="dim-pill">
+          <div class="dim-pill-title">第三關｜資源配置</div>
+          <div class="dim-pill-sub">E 人人有獎 vs T 集中弱勢</div>
+        </div>
+        <div class="dim-pill">
+          <div class="dim-pill-title">第四關｜價值目標</div>
+          <div class="dim-pill-sub">C 變強變厲害 vs W 活得有尊嚴</div>
+        </div>
+      </div>
+
+      <button type="button" class="btn-primary" id="startBtn">開始測驗（憑直覺作答）</button>
+    </div>
+  </section>
+
+  <section id="quizScreen" class="screen">
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="stageLabel" class="stage-badge">第一關：先練功 vs 先撐傘</span>
+        <span id="progressText">1 / 12</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <div class="card question-box" id="questionCard">
+      <div class="q-number" id="qNumber">QUESTION 01</div>
+      <h2 class="q-text" id="qText">題目載入中...</h2>
+
+      <div class="options-list" id="optionsContainer"></div>
+
+      <div class="nav-controls">
+        <button type="button" class="nav-btn" id="prevBtn">← 上一題</button>
+        <span class="swipe-hint">左右滑動可切換題目</span>
+        <button type="button" class="nav-btn" id="nextBtn">下一題 →</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="resultScreen" class="screen">
+    <div class="card">
+      <div class="result-header">
+        <div class="avatar-ring" id="resultAvatar"></div>
+        <div class="result-code" id="resultCode">PSEW</div>
+        <div class="result-name" id="resultName">溫柔制度設計師</div>
+        <div class="result-tagline" id="resultTagline">相信好的環境與規則，能讓大家不用拚命內捲也能好好生活。</div>
+      </div>
+
+      <div class="spectrum-section">
+        <div class="section-label">📊 你的四大行動維度光譜</div>
+        <div id="spectrumContainer"></div>
+      </div>
+
+      <div class="detail-box">
+        <h4>✨ 你的核心超能力與團隊亮點</h4>
+        <p id="resultStrength"></p>
+      </div>
+
+      <div class="detail-box">
+        <h4>⚠️ 容易忽略的盲點提醒</h4>
+        <p id="resultBlindspot"></p>
+      </div>
+
+      <div class="detail-box">
+        <h4>🤝 最佳互補搭檔</h4>
+        <p id="resultPartner"></p>
+      </div>
+
+      <div class="theory-box">
+        <h4>🎓 社會投資模型理論彩蛋</h4>
+        <p id="resultTheory"></p>
+      </div>
+
+      <button type="button" class="btn-primary" id="shareBtn">📋 一鍵複製我的角色結果</button>
+      <button type="button" class="btn-secondary" id="restartBtn">🔄 重新測驗一次</button>
+    </div>
+  </section>
+</div>
+
+<div class="modal-backdrop" id="dexModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 style="font-size: 18px; font-weight: 800;">📖 16 種社會投資行動人格圖鑑</h3>
+      <button type="button" class="btn-ghost" id="closeDexBtn">✕ 關閉</button>
+    </div>
+    <p style="font-size: 13px; color: var(--text-sub); margin-bottom: 14px;">點擊任一張卡片，可以直接查看該類型的詳細解析：</p>
+    <div class="dex-grid" id="dexGrid"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast">已複製結果！可直接貼上分享</div>
+
+<script>
+  const QUESTIONS = [
+    {
+      dim: 0,
+      stage: "第一關：先幫人練功 vs 先給人撐傘",
+      text: "朋友最近手頭很緊、快繳不出房租，你會怎麼幫他？",
+      options: [
+        { val: "P", text: "幫他改履歷、介紹兼職或教他接案技能，讓他以後賺更多。" },
+        { val: "R", text: "先借他一筆急用金或請他吃幾頓飯，讓他先度過眼前難關。" }
+      ]
+    },
+    {
+      dim: 0,
+      stage: "第一關：先幫人練功 vs 先給人撐傘",
+      text: "如果你當上社區主委，多出一筆經費，你最想辦什麼活動？",
+      options: [
+        { val: "P", text: "開免費的兒童英文班、長輩肌力運動課，讓大家越變越強。" },
+        { val: "R", text: "成立社區愛心物資站，誰家突然出狀況就能馬上來領物資。" }
+      ]
+    },
+    {
+      dim: 0,
+      stage: "第一關：先幫人練功 vs 先給人撐傘",
+      text: "你覺得幫人幫到底，最重要的是哪件事？",
+      options: [
+        { val: "P", text: "教會他釣魚的方法，讓他以後不用再靠別人。" },
+        { val: "R", text: "在他快餓死之前，先給他一條魚吃飽再說。" }
+      ]
+    },
+    {
+      dim: 1,
+      stage: "第二關：改好規則 vs 帶好個人",
+      text: "看到同學一直熬夜打工、功課快被當掉，你覺得根本解方是什麼？",
+      options: [
+        { val: "S", text: "學校應該提高獎助學金、降低學費，或規定校內工讀時薪要夠高。" },
+        { val: "I", text: "找幾個朋友幫他補習重點，教他怎麼做時間管理與讀書筆記。" }
+      ]
+    },
+    {
+      dim: 1,
+      stage: "第二關：改好規則 vs 帶好個人",
+      text: "新手剛進公司一直做錯事、被主管罵，你會怎麼建議？",
+      options: [
+        { val: "S", text: "把公司的作業流程（SOP）和新人手冊改清楚，不要只靠老鳥口頭教。" },
+        { val: "I", text: "幫他配一位有耐心的前輩一對一帶他，手把手教到會為止。" }
+      ]
+    },
+    {
+      dim: 1,
+      stage: "第二關：改好規則 vs 帶好個人",
+      text: "在團購或分組報告遇到「搭便車」的人，你通常怎麼處理？",
+      options: [
+        { val: "S", text: "訂好明確的分工表跟扣分規則，讓制度自動淘汰偷懶的人。" },
+        { val: "I", text: "私下找他聊聊，問他是不是遇到什麼困難，幫他找適合的工作。" }
+      ]
+    },
+    {
+      dim: 2,
+      stage: "第三關：人人有獎 vs 集中火力",
+      text: "如果你是市長，要發一筆「育兒或學習補助」，你會怎麼發？",
+      options: [
+        { val: "E", text: "不管有錢沒錢，只要符合年齡人人都能領，大家一起受惠才不會被貼標籤。" },
+        { val: "T", text: "設下收入門檻，把錢全部集中發給最辛苦的低收入家庭，補助金額加倍。" }
+      ]
+    },
+    {
+      dim: 2,
+      stage: "第三關：人人有獎 vs 集中火力",
+      text: "學校要蓋一間新的自習室，位置有限，你贊成哪種使用規則？",
+      options: [
+        { val: "E", text: "先搶先贏或輪流登記，全校同學都有平等使用的權利。" },
+        { val: "T", text: "優先保留給家裡沒地方讀書、或申請清寒助學的同學使用。" }
+      ]
+    },
+    {
+      dim: 2,
+      stage: "第三關：人人有獎 vs 集中火力",
+      text: "你比較認同哪種分蛋糕的方式？",
+      options: [
+        { val: "E", text: "每個人都切一樣大塊，最公平、也最不會吵架。" },
+        { val: "T", text: "看誰現在肚子最餓，就把最大塊的切給他。" }
+      ]
+    },
+    {
+      dim: 3,
+      stage: "第四關：變強變厲害 vs 活得有尊嚴",
+      text: "你覺得一份「好工作」最重要的條件是什麼？",
+      options: [
+        { val: "C", text: "能學到真本事、升遷快、薪水有成長空間，未來更有競爭力。" },
+        { val: "W", text: "準時下班、氣氛友善、不內耗，有足夠時間陪家人跟做喜歡的事。" }
+      ]
+    },
+    {
+      dim: 3,
+      stage: "第四關：變強變厲害 vs 活得有尊嚴",
+      text: "如果朋友決定辭職回家專心照顧生病的家人，你的反應是？",
+      options: [
+        { val: "C", text: "會替他擔心職涯中斷，幫他找找看有沒有政府的喘息服務讓他能繼續上班。" },
+        { val: "W", text: "很佩服他的決定，認為照顧家人本來就是超有價值的事，政府應該發薪水給他。" }
+      ]
+    },
+    {
+      dim: 3,
+      stage: "第四關：變強變厲害 vs 活得有尊嚴",
+      text: "你理想中的「幸福社會」長什麼樣子？",
+      options: [
+        { val: "C", text: "每個人都很有能力、社會充滿活力與效率，大家一起把餅做大。" },
+        { val: "W", text: "不管你賺多賺少、有沒有在上班，每個人都能被溫柔對待、有尊嚴地生活。" }
+      ]
+    }
+  ];
+
+  const PROFILES = {
+    PSEC: {
+      name: "效率改造王",
+      tagline: "喜歡打造一套好用的公開制度，讓每個人都能快速升級、發揮最大戰力。",
+      strength: "你擁有極佳的全局視野與規劃力，擅長設計「人人可用」的成長環境（如普及托育、終身學習系統），讓整個團隊或社會一起向上提升。",
+      blindspot: "有時會太相信「只要把舞台搭好，大家就會自己走上來」，容易忽略最底層或缺乏資訊的人可能連門檻都跨不進來（中產階級偏誤）。",
+      partner: "RITW（第一線急難天使）—— 他能幫你看見制度邊緣最緊急的個案需求。",
+      theory: "對應經典「北歐社會投資典範」：透過普及化人力資本存量（Stocks）投資與積極勞動市場政策，達成高就業與高生產力。"
+    },
+    PSEW: {
+      name: "溫柔制度設計師",
+      tagline: "相信好的環境與規則，能讓大家不用拚命內捲也能好好生活、彼此照顧。",
+      strength: "你兼具結構改革的眼光與人文關懷，重視工作與生活平衡、照顧正義與去標籤化的公共服務，是打造友善共好環境的靈魂人物。",
+      blindspot: "在資源有限或面臨緊急危機時，可能會因為想兼顧所有人的福祉與長期制度，而在短期止血決策上顯得不夠果斷。",
+      partner: "RSTC（精算把關守門員）—— 他能幫你守住預算底線，讓理想制度永續運作。",
+      theory: "對應「包容性社會投資（Inclusive Social Investment）」：強調普及托育與彈性工時不應只為了逼人就業，更要促進性別平權與照顧尊嚴。"
+    },
+    PSTC: {
+      name: "精準投資策略家",
+      tagline: "擅長把資源精準投在最需要拉一把的人身上，用系統方法幫他們成功翻身。",
+      strength: "你邏輯清晰、講求實證效益，懂得在早期階段找出高風險群體，透過制度性的教育或職訓投資，創造最高的社會投資報酬率。",
+      blindspot: "過度追求「可量化的脫貧成效」時，可能會無意間篩選掉進步較慢或難以重返職場的對象（例如重度失能者）。",
+      partner: "PITW（微光引路人）—— 他能提醒你尊重每個人的獨特步調，不被 KPI 綁架。",
+      theory: "對應「早期兒童發展與精準人力資本投資」：強調在生命歷程早期介入弱勢家庭，能大幅降低後續教育補救與社會排除成本。"
+    },
+    PSTW: {
+      name: "公平正義守護者",
+      tagline: "專門打破不公平的遊戲規則，替弱勢群體爭取應有的尊嚴與發聲空間。",
+      strength: "你對結構性不平等特別敏銳，不滿足於表面施捨，而是致力於從制度面排除階級複製的障礙，守護邊緣群體的文化與生活尊嚴。",
+      blindspot: "有時對現行體制的批判力道較強，在需要與主流大眾溝通爭取預算支持時，可能會覺得孤軍奮戰。",
+      partner: "PIEC（全民成長教練）—— 他擅長把理念轉譯成大眾容易接受的語言與工具。",
+      theory: "對應「反中產偏誤的結構賦權取向」：主張社會投資必須積極向弱勢傾斜，同時避免將受助者工具化為單純的勞動力。"
+    },
+    PIEC: {
+      name: "全民成長教練",
+      tagline: "熱愛分享好用的學習工具與成長心法，希望身邊每個人都一起變強。",
+      strength: "你充滿正能量與行動力，擅長把複雜的技能拆解成大家都能上手的方法，是推動組織學習、知識普及與自我增能的最佳催化劑。",
+      blindspot: "容易預設「每個人都有足夠的精力與條件可以自我提升」，遇到正深陷生存焦慮的人時，建議先傾聽再給方法。",
+      partner: "RIEW（社區里長伯／互助王）—— 他能幫你先接住對方的情緒與生活急難。",
+      theory: "對應「終身學習與人力資本存量（Stocks）普及化」：強調透過持續更新個人技能，提升面對產業轉型的適應力。"
+    },
+    PIEW: {
+      name: "暖心生活陪伴者",
+      tagline: "擅長在日常中傾聽與鼓勵他人，幫大家找回自信與生活的節奏感。",
+      strength: "你溫暖、細膩且不帶批判，懂得在平凡日常中建立人際連結與心理韌性，讓身邊的人在沒有壓力的狀態下慢慢長出力量。",
+      blindspot: "面對大規模、結構性的不公義時，可能會因為習慣從個人情緒與關係切入，而較少去挑戰背後的制度規則。",
+      partner: "PSEC（效率改造王）—— 他能把你溫暖的陪伴經驗規模化成制度。",
+      theory: "對應「社會資本與非正式支持網絡建構」：重視人際互信、心理健康與全人發展，而非單一的經濟產出指標。"
+    },
+    PITC: {
+      name: "逆轉勝導師",
+      tagline: "專門一對一帶飛陷入低潮的人，陪他練出真功夫、徹底扭轉處境。",
+      strength: "你務實、有耐心又目標明確，最擅長在人生轉折點（如求職、轉職）給予弱勢個體密集的技能指導，陪對方打出一場漂亮的翻身仗。",
+      blindspot: "容易把成敗責任過度攬在自己或當事人身上，有時會忽略大環境低薪或制度門檻對個人努力的限制。",
+      partner: "PSTW（公平正義守護者）—— 他能幫你在外部爭取更公平的制度環境。",
+      theory: "對應「生命歷程轉換（Flows）與個別化積極勞動市場政策（ALMP）」：透過導師制與職涯輔導，協助弱勢者順利跨越失業到就業的斷層。"
+    },
+    PITW: {
+      name: "微光引路人",
+      tagline: "願意花時間走進最難觸及的角落，尊重每個人的步調，陪他慢慢長出力量。",
+      strength: "你擁有極深的同理心與抗壓性，不急著用社會標準要求他人，而是真誠地陪在脆弱處境者身旁，成為他們重新信任世界的起點。",
+      blindspot: "因為太投入在個別對象的陪伴中，容易出現助人者耗竭（Burnout），記得也要為自己留出喘息空間。",
+      partner: "RSEC（防呆安全網工程師）—— 他能幫你建立穩固的後勤支援系統。",
+      theory: "對應「優勢觀點與充權（Empowerment）取向」：強調在發展人力資本之前，必須先重建個體的主體性與內在尊嚴。"
+    },
+    RSEC: {
+      name: "防呆安全網工程師",
+      tagline: "凡事都會先想好備案與防護機制，確保就算遇到大風大浪，整個團隊也不會垮。",
+      strength: "你思慮周密、重視系統穩定性，擅長設計普及式的風險分攤機制（如社會保險、失業給付），讓大家在面對景氣波動時有底氣。",
+      blindspot: "有時會把注意力放在「預防最壞情況發生」，對於需要冒險創新或長期投資的新方案會採取比較保守的態度。",
+      partner: "PIEC（全民成長教練）—— 他能為穩健的體系注入創新與成長動能。",
+      theory: "對應「制度性所得緩衝（Buffers）與自動穩定機制」：確保勞工在遭遇失業或景氣衰退時，擁有維持基本購買力與生活穩定的制度保障。"
+    },
+    RSEW: {
+      name: "無憂生活烏托邦家",
+      tagline: "認為大家不用為基本生活煩惱時，才會真正展現善良與創造力。",
+      strength: "你格局宏大、充滿人道理想，主張透過無條件的基礎保障免除人們的生存恐懼，讓每個人都能自由追尋有意義的生活。",
+      blindspot: "在現實資源受限的情境下，容易被質疑「錢從哪裡來」或「會不會養懶人」，需要搭配具體的財務與激勵設計。",
+      partner: "PSTC（精準投資策略家）—— 他能幫你用數據精算資源配置的可行性。",
+      theory: "對應「無條件基本收入（UBI）與去商品化（Decommodification）」理念：主張公民不應被迫為了生存而接受低薪剝削工作。"
+    },
+    RSTC: {
+      name: "精算把關守門員",
+      tagline: "懂得把有限的救命錢算得清清楚楚，確保每一分資源都花在最緊急的人身上。",
+      strength: "你理性、客觀、執行力強，在經費拮据時最能守住財政紀律，透過精準的資格審核把資源留給真正失去工作能力的弱勢者。",
+      blindspot: "過於嚴格的審查與排富門檻，有時會無意間製造「福利烙印（Stigma）」，讓真正需要幫助但不敢開口的人卻步。",
+      partner: "PSEW（溫柔制度設計師）—— 他能幫你設計更友善、不傷自尊的申請流程。",
+      theory: "對應「選擇性社會救助與安全網緩衝（Buffers）」：在財政約束下，將有限的現金移轉集中於貧窮線以下的脆弱家戶。"
+    },
+    RSTW: {
+      name: "底線尊嚴捍衛者",
+      tagline: "絕不允許任何人被社會遺忘，致力於守住最基本的生活安全線。",
+      strength: "你有強烈的道德勇氣與正義感，當政策一味追求經濟效率而犧牲底層弱勢時，你總是第一個站出來捍衛基本人權與生存底線。",
+      blindspot: "有時會把重心完全放在「防止往下墜落」，而較少思考如何協助有潛力的對象進一步向上流動。",
+      partner: "PITC（逆轉勝導師）—— 他能接棒幫穩定下來的對象規劃職涯翻身。",
+      theory: "對應「社會投資批評學派的人權提醒」：警告政府不能只顧著投資兒童與就業人口，而削減對身心障礙者與貧困長者的基本生活保障。"
+    },
+    RIEC: {
+      name: "隨身風險顧問",
+      tagline: "習慣提醒大家準備好緊急預備金與 Plan B，遇到突發狀況也能迅速止血。",
+      strength: "你務實、冷靜又具備危機意識，擅長教導身邊每個人建立個人的財務緩衝與轉職備案，大幅降低突發事件對生活的衝擊。",
+      blindspot: "容易習慣用「個人風險管理」的角度看問題，對於那些從出生就沒有多餘資源可以存預備金的人，需要多一份結構理解。",
+      partner: "PSTW（公平正義守護者）—— 他能帶你看見不同起跑點背後的結構限制。",
+      theory: "對應「個人化風險管理與微觀緩衝（Micro-buffers）」：強調在動態勞動市場中，個人具備短期財務與職涯彈性轉換能力的重要性。"
+    },
+    RIEW: {
+      name: "社區里長伯／互助王",
+      tagline: "哪裡有需要就往哪裡跑，最擅長串聯身邊的人情味與即時支援。",
+      strength: "你是天生的社群連結者，記性好、熱心腸，總能把多出來的物資跟有需要的人配對在一起，是社區裡最溫暖的即時防護網。",
+      blindspot: "習慣靠自己的人脈與熱情救火，時間久了容易把所有人的事都扛在肩上，需要學會把任務分派出去。",
+      partner: "RSEC（防呆安全網工程師）—— 他能幫你把零散的互助經驗變成長期機制。",
+      theory: "對應「社區互助網絡與非正式緩衝機制」：在正式社福體系抵達之前，透過鄰里支持減緩家庭突發變故的衝擊。"
+    },
+    RITC: {
+      name: "危機重啟教練",
+      tagline: "遇到突發慘劇時冷靜又務實，能幫當事人快速止血、重新站回跑道。",
+      strength: "你在混亂中依然能保持清晰頭腦，擅長針對失業、債務或家庭變故提供一對一的緊急處遇，幫當事人用最快速度恢復自立能力。",
+      blindspot: "因為太講求「快速復原與重回正軌」，有時會不小心忽略當事人內心尚未處理完的悲傷或創傷情緒。",
+      partner: "PIEW（暖心生活陪伴者）—— 他能陪當事人慢慢消化情緒、重建信心。",
+      theory: "對應「危機介入與快速再就業輔導（Activation）」：在提供短期生活紓困的同時，立即銜接個別化工作復原計畫。"
+    },
+    RITW: {
+      name: "第一線急難天使",
+      tagline: "看到別人受苦會第一個衝上前遞出援手，對你來說「眼前的這個人」永遠比規則重要。",
+      strength: "你擁有最純粹的善良與行動勇氣，在風暴發生時不問資格、不計回報，優先解決眼前的飢餓、無家與創傷，是人間最真實的溫暖。",
+      blindspot: "最容易因為過度共情而感到無力或心碎，當問題反覆發生時，試著與制度改革派合作，能讓你的善意發揮更長遠的影響。",
+      partner: "PSEC（效率改造王）—— 他能從根本修改規則，減少未來落水的人數。",
+      theory: "對應「人道關懷與無條件緊急緩衝（Buffers）」：提醒所有政策設計者，在談論長期人力投資之前，必須先確保每個人今天都能活下去。"
+    }
+  };
+
+  let currentIndex = 0;
+  let answers = new Array(QUESTIONS.length).fill(null);
+  let touchStartX = 0;
+
+  const homeScreen = document.getElementById("homeScreen");
+  const quizScreen = document.getElementById("quizScreen");
+  const resultScreen = document.getElementById("resultScreen");
+  const qNumber = document.getElementById("qNumber");
+  const qText = document.getElementById("qText");
+  const stageLabel = document.getElementById("stageLabel");
+  const progressText = document.getElementById("progressText");
+  const progressFill = document.getElementById("progressFill");
+  const optionsContainer = document.getElementById("optionsContainer");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const questionCard = document.getElementById("questionCard");
+  const dexModal = document.getElementById("dexModal");
+
+  function showScreen(screenEl) {
+    [homeScreen, quizScreen, resultScreen].forEach(s => s.classList.remove("active"));
+    screenEl.classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function renderQuestion(index) {
+    const q = QUESTIONS[index];
+    qNumber.textContent = "QUESTION " + String(index + 1).padStart(2, "0");
+    qText.textContent = q.text;
+    stageLabel.textContent = q.stage;
+    progressText.textContent = (index + 1) + " / " + QUESTIONS.length;
+    progressFill.style.width = (((index + 1) / QUESTIONS.length) * 100) + "%";
+
+    optionsContainer.innerHTML = "";
+    q.options.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "option-btn" + (answers[index] === opt.val ? " selected" : "");
+      btn.innerHTML = '<span class="option-letter">' + opt.val + '</span><span class="option-copy">' + opt.text + '</span>';
+      btn.addEventListener("click", () => handleSelect(opt.val));
+      optionsContainer.appendChild(btn);
+    });
+
+    prevBtn.disabled = index === 0;
+    nextBtn.textContent = index === QUESTIONS.length - 1 ? "查看結果 ✓" : "下一題 →";
+  }
+
+  function handleSelect(val) {
+    answers[currentIndex] = val;
+    renderQuestion(currentIndex);
+
+    setTimeout(() => {
+      if (currentIndex < QUESTIONS.length - 1) {
+        currentIndex++;
+        renderQuestion(currentIndex);
+      } else {
+        const firstUnanswered = answers.findIndex(a => a === null);
+        if (firstUnanswered !== -1) {
+          currentIndex = firstUnanswered;
+          renderQuestion(currentIndex);
+          showToast("還有一題還沒選喔！");
+        } else {
+          calculateAndShowResult();
+        }
+      }
+    }, 240);
+  }
+
+  function generateAvatarSVG(code) {
+    const colors = {
+      P: "#34B3A0", R: "#F28482",
+      S: "#5BA4CF", I: "#F6BD60",
+      E: "#48BB78", T: "#9F7AEA",
+      C: "#3182CE", W: "#ED64A6"
+    };
+    const c1 = colors[code[0]] || "#34B3A0";
+    const c2 = colors[code[1]] || "#5BA4CF";
+    const c3 = colors[code[2]] || "#F6BD60";
+    const c4 = colors[code[3]] || "#F28482";
+
+    return '<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+      '<circle cx="32" cy="32" r="28" fill="' + c1 + '" fill-opacity="0.18"/>' +
+      '<rect x="14" y="14" width="16" height="16" rx="6" fill="' + c1 + '"/>' +
+      '<circle cx="42" cy="22" r="8" fill="' + c2 + '"/>' +
+      '<circle cx="22" cy="42" r="8" fill="' + c3 + '"/>' +
+      '<rect x="34" y="34" width="16" height="16" rx="8" fill="' + c4 + '"/>' +
+      '</svg>';
+  }
+
+  function calculateAndShowResult(forcedCode = null) {
+    let code = "";
+    let counts = { P: 0, R: 0, S: 0, I: 0, E: 0, T: 0, C: 0, W: 0 };
+
+    if (forcedCode) {
+      code = forcedCode;
+      counts = {
+        P: forcedCode[0] === "P" ? 2 : 1, R: forcedCode[0] === "R" ? 2 : 1,
+        S: forcedCode[1] === "S" ? 2 : 1, I: forcedCode[1] === "I" ? 2 : 1,
+        E: forcedCode[2] === "E" ? 2 : 1, T: forcedCode[2] === "T" ? 2 : 1,
+        C: forcedCode[3] === "C" ? 2 : 1, W: forcedCode[3] === "W" ? 2 : 1
+      };
+    } else {
+      answers.forEach(a => { if (a) counts[a]++; });
+      code += counts.P >= counts.R ? "P" : "R";
+      code += counts.S >= counts.I ? "S" : "I";
+      code += counts.E >= counts.T ? "E" : "T";
+      code += counts.C >= counts.W ? "C" : "W";
+    }
+
+    const profile = PROFILES[code];
+    document.getElementById("resultAvatar").innerHTML = generateAvatarSVG(code);
+    document.getElementById("resultCode").textContent = code;
+    document.getElementById("resultName").textContent = profile.name;
+    document.getElementById("resultTagline").textContent = profile.tagline;
+    document.getElementById("resultStrength").textContent = profile.strength;
+    document.getElementById("resultBlindspot").textContent = profile.blindspot;
+    document.getElementById("resultPartner").textContent = profile.partner;
+    document.getElementById("resultTheory").textContent = profile.theory;
+
+    const dims = [
+      { left: "P 提前練功", right: "R 先給撐傘", lCount: counts.P, rCount: counts.R },
+      { left: "S 改好規則", right: "I 帶好個人", lCount: counts.S, rCount: counts.I },
+      { left: "E 人人有獎", right: "T 集中弱勢", lCount: counts.E, rCount: counts.T },
+      { left: "C 變強變厲害", right: "W 活得有尊嚴", lCount: counts.C, rCount: counts.W }
+    ];
+
+    const spectrumContainer = document.getElementById("spectrumContainer");
+    spectrumContainer.innerHTML = "";
+    dims.forEach(d => {
+      const total = (d.lCount + d.rCount) || 3;
+      const lPct = Math.round((d.lCount / total) * 100);
+      const rPct = 100 - lPct;
+      const lWin = lPct >= rPct;
+
+      const item = document.createElement("div");
+      item.className = "spectrum-item";
+      item.innerHTML =
+        '<div class="spectrum-labels">' +
+          '<span class="' + (lWin ? 'win' : 'lose') + '">' + d.left + ' (' + lPct + '%)</span>' +
+          '<span class="' + (!lWin ? 'win' : 'lose') + '">' + d.right + ' (' + rPct + '%)</span>' +
+        '</div>' +
+        '<div class="spectrum-bar">' +
+          '<div class="spectrum-fill-left" style="width:' + lPct + '%"></div>' +
+          '<div class="spectrum-fill-right" style="width:' + rPct + '%"></div>' +
+        '</div>';
+      spectrumContainer.appendChild(item);
+    });
+
+    showScreen(resultScreen);
+  }
+
+  function renderDex() {
+    const dexGrid = document.getElementById("dexGrid");
+    dexGrid.innerHTML = "";
+    Object.entries(PROFILES).forEach(([code, info]) => {
+      const item = document.createElement("div");
+      item.className = "dex-item";
+      item.innerHTML =
+        '<div class="dex-code">' + code + '</div>' +
+        '<div class="dex-name">' + info.name + '</div>' +
+        '<div class="dex-short">' + info.tagline + '</div>';
+      item.addEventListener("click", () => {
+        dexModal.classList.remove("open");
+        calculateAndShowResult(code);
+      });
+      dexGrid.appendChild(item);
+    });
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 2400);
+  }
+
+  document.getElementById("startBtn").addEventListener("click", () => {
+    currentIndex = 0;
+    answers.fill(null);
+    renderQuestion(0);
+    showScreen(quizScreen);
+  });
+
+  prevBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      renderQuestion(currentIndex);
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentIndex < QUESTIONS.length - 1) {
+      currentIndex++;
+      renderQuestion(currentIndex);
+    } else {
+      const firstUnanswered = answers.findIndex(a => a === null);
+      if (firstUnanswered !== -1) {
+        currentIndex = firstUnanswered;
+        renderQuestion(currentIndex);
+        showToast("還有一題還沒選喔！");
+      } else {
+        calculateAndShowResult();
+      }
+    }
+  });
+
+  questionCard.addEventListener("touchstart", e => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  questionCard.addEventListener("touchend", e => {
+    const diff = e.changedTouches[0].screenX - touchStartX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && currentIndex > 0) {
+        currentIndex--;
+        renderQuestion(currentIndex);
+      } else if (diff < 0 && currentIndex < QUESTIONS.length - 1) {
+        currentIndex++;
+        renderQuestion(currentIndex);
+      }
+    }
+  }, { passive: true });
+
+  document.getElementById("restartBtn").addEventListener("click", () => {
+    currentIndex = 0;
+    answers.fill(null);
+    showScreen(homeScreen);
+  });
+
+  document.getElementById("shareBtn").addEventListener("click", () => {
+    const code = document.getElementById("resultCode").textContent;
+    const name = document.getElementById("resultName").textContent;
+    const tagline = document.getElementById("resultTagline").textContent;
+    const shareText = "🌱 我剛測出我的「社會投資行動人格」是：【" + code + "｜" + name + "】！\n「" + tagline + "」\n快來測測看你是哪一種助人行動派！";
+
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareText).then(() => {
+        showToast("已複製結果！可直接貼上分享");
+      });
+    } else {
+      showToast("請長按畫面文字複製分享");
+    }
+  });
+
+  document.getElementById("openDexBtn").addEventListener("click", () => {
+    renderDex();
+    dexModal.classList.add("open");
+  });
+
+  document.getElementById("closeDexBtn").addEventListener("click", () => {
+    dexModal.classList.remove("open");
+  });
+
+  dexModal.addEventListener("click", e => {
+    if (e.target === dexModal) dexModal.classList.remove("open");
+  });
+</script>
+</body>
+  </html>
