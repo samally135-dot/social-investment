@@ -125,34 +125,7 @@
     .hero-desc {
       font-size: 15px;
       color: var(--text-sub);
-      margin-bottom: 22px;
-    }
-
-    .dim-preview-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
       margin-bottom: 24px;
-    }
-
-    .dim-pill {
-      background: #F8FAFC;
-      border: 1px solid var(--border-soft);
-      border-radius: 14px;
-      padding: 12px;
-    }
-
-    .dim-pill-title {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--mint-dark);
-      margin-bottom: 4px;
-    }
-
-    .dim-pill-sub {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-main);
     }
 
     .btn-primary {
@@ -201,14 +174,6 @@
       margin-bottom: 8px;
     }
 
-    .stage-badge {
-      background: var(--sky-light);
-      color: #2B6CB0;
-      padding: 3px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-    }
-
     .progress-track {
       width: 100%;
       height: 10px;
@@ -254,7 +219,7 @@
 
     .option-btn {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 14px;
       width: 100%;
       text-align: left;
@@ -272,25 +237,20 @@
       box-shadow: 0 6px 16px rgba(52, 179, 160, 0.16);
     }
 
-    .option-letter {
+    .option-dot {
       flex-shrink: 0;
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
       background: #FFFFFF;
-      border: 1.5px solid var(--border-soft);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 15px;
-      color: var(--text-sub);
+      border: 2px solid #CBD5E1;
+      transition: all 0.16s ease;
     }
 
-    .option-btn.selected .option-letter {
+    .option-btn.selected .option-dot {
       background: var(--mint-primary);
       border-color: var(--mint-primary);
-      color: #FFFFFF;
+      box-shadow: inset 0 0 0 4px #FFFFFF;
     }
 
     .option-copy {
@@ -568,29 +528,10 @@
   <section id="homeScreen" class="screen active">
     <div class="card">
       <span class="hero-badge">⏱️ 3 分鐘日常直覺測驗 · 共 12 題</span>
-      <h1 class="hero-title">面對需要幫忙的人，你是哪一種行動派？</h1>
+      <h1 class="hero-title">在日常小事裡，你是哪一種行動習慣？</h1>
       <p class="hero-desc">
-        不用背任何社會學理論！透過 12 個貼近日常的生活選擇題，測出你在「社會投資模型」中的 4 字母專屬角色卡與助人超能力。
+        不用想理論、也不用看任何字母提示，只要憑著平常遇到事情的第一直覺選出最像你的做法，最後就能揭曉你的專屬行動人格與角色卡。
       </p>
-
-      <div class="dim-preview-grid">
-        <div class="dim-pill">
-          <div class="dim-pill-title">第一關｜介入時機</div>
-          <div class="dim-pill-sub">P 提前練功 vs R 先給撐傘</div>
-        </div>
-        <div class="dim-pill">
-          <div class="dim-pill-title">第二關｜推動路徑</div>
-          <div class="dim-pill-sub">S 改好規則 vs I 一對一帶</div>
-        </div>
-        <div class="dim-pill">
-          <div class="dim-pill-title">第三關｜資源配置</div>
-          <div class="dim-pill-sub">E 人人有獎 vs T 集中弱勢</div>
-        </div>
-        <div class="dim-pill">
-          <div class="dim-pill-title">第四關｜價值目標</div>
-          <div class="dim-pill-sub">C 變強變厲害 vs W 活得有尊嚴</div>
-        </div>
-      </div>
 
       <button type="button" class="btn-primary" id="startBtn">開始測驗（憑直覺作答）</button>
     </div>
@@ -599,7 +540,7 @@
   <section id="quizScreen" class="screen">
     <div class="progress-wrap">
       <div class="progress-meta">
-        <span id="stageLabel" class="stage-badge">第一關：先練功 vs 先撐傘</span>
+        <span>日常直覺作答</span>
         <span id="progressText">1 / 12</span>
       </div>
       <div class="progress-track">
@@ -608,7 +549,7 @@
     </div>
 
     <div class="card question-box" id="questionCard">
-      <div class="q-number" id="qNumber">QUESTION 01</div>
+      <div class="q-number" id="qNumber">第 01 題</div>
       <h2 class="q-text" id="qText">題目載入中...</h2>
 
       <div class="options-list" id="optionsContainer"></div>
@@ -677,111 +618,87 @@
 <script>
   const QUESTIONS = [
     {
-      dim: 0,
-      stage: "第一關：先幫人練功 vs 先給人撐傘",
-      text: "朋友最近手頭很緊、快繳不出房租，你會怎麼幫他？",
+      text: "朋友跟你抱怨最近做事常忘東忘西、很困擾，你通常會？",
       options: [
-        { val: "P", text: "幫他改履歷、介紹兼職或教他接案技能，讓他以後賺更多。" },
-        { val: "R", text: "先借他一筆急用金或請他吃幾頓飯，讓他先度過眼前難關。" }
+        { val: "P", text: "傳給他好用的待辦清單或教他怎麼分類筆記，陪他一起建立習慣。" },
+        { val: "R", text: "平常幫他多留意重要期限或提醒，先幫他把眼前的漏網之魚接住。" }
       ]
     },
     {
-      dim: 0,
-      stage: "第一關：先幫人練功 vs 先給人撐傘",
-      text: "如果你當上社區主委，多出一筆經費，你最想辦什麼活動？",
+      text: "你買了一台新的平板或筆電，剛開始用時會？",
       options: [
-        { val: "P", text: "開免費的兒童英文班、長輩肌力運動課，讓大家越變越強。" },
-        { val: "R", text: "成立社區愛心物資站，誰家突然出狀況就能馬上來領物資。" }
+        { val: "P", text: "花時間摸熟快捷鍵、整理資料夾與設定模板，先把工具調教順手。" },
+        { val: "R", text: "先拿來應付今天要做的事就好，哪天卡住或出包再來查怎麼解決。" }
       ]
     },
     {
-      dim: 0,
-      stage: "第一關：先幫人練功 vs 先給人撐傘",
-      text: "你覺得幫人幫到底，最重要的是哪件事？",
+      text: "看到身邊的人遇到煩惱，你心裡最常浮現的想法是？",
       options: [
-        { val: "P", text: "教會他釣魚的方法，讓他以後不用再靠別人。" },
-        { val: "R", text: "在他快餓死之前，先給他一條魚吃飽再說。" }
+        { val: "P", text: "如果他學會這招，以後遇到類似狀況就不用慌了。" },
+        { val: "R", text: "他現在一定很累，先陪他喘口氣、幫他擋一下眼前的壓力再說。" }
       ]
     },
     {
-      dim: 1,
-      stage: "第二關：改好規則 vs 帶好個人",
-      text: "看到同學一直熬夜打工、功課快被當掉，你覺得根本解方是什麼？",
+      text: "你跟室友或家人常因為「誰該倒垃圾／洗碗／維持整潔」起爭執，你會？",
       options: [
-        { val: "S", text: "學校應該提高獎助學金、降低學費，或規定校內工讀時薪要夠高。" },
-        { val: "I", text: "找幾個朋友幫他補習重點，教他怎麼做時間管理與讀書筆記。" }
+        { val: "S", text: "貼一張清楚的輪值表或訂出明確標準，照規矩走就不用一直吵。" },
+        { val: "I", text: "找對方坐下來好好聊，了解彼此最近是不是太忙、哪裡卡關，再彈性調整。" }
       ]
     },
     {
-      dim: 1,
-      stage: "第二關：改好規則 vs 帶好個人",
-      text: "新手剛進公司一直做錯事、被主管罵，你會怎麼建議？",
+      text: "在群組或社團裡，大家常常時間對不起來、資訊很亂，你會？",
       options: [
-        { val: "S", text: "把公司的作業流程（SOP）和新人手冊改清楚，不要只靠老鳥口頭教。" },
-        { val: "I", text: "幫他配一位有耐心的前輩一對一帶他，手把手教到會為止。" }
+        { val: "S", text: "建一個共編表單或固定回報格式，把流程理順讓大家照著填。" },
+        { val: "I", text: "一個一個私訊問大家方便的時間，順便關心一下近況、慢慢喬。" }
       ]
     },
     {
-      dim: 1,
-      stage: "第二關：改好規則 vs 帶好個人",
-      text: "在團購或分組報告遇到「搭便車」的人，你通常怎麼處理？",
+      text: "你覺得讓事情順利運作，比較關鍵的是？",
       options: [
-        { val: "S", text: "訂好明確的分工表跟扣分規則，讓制度自動淘汰偷懶的人。" },
-        { val: "I", text: "私下找他聊聊，問他是不是遇到什麼困難，幫他找適合的工作。" }
+        { val: "S", text: "規則跟流程有沒有寫清楚、公不公平，制度對了大家就會順。" },
+        { val: "I", text: "人跟人之間的默契、信任與個別狀況，有沒有被好好照顧到。" }
       ]
     },
     {
-      dim: 2,
-      stage: "第三關：人人有獎 vs 集中火力",
-      text: "如果你是市長，要發一筆「育兒或學習補助」，你會怎麼發？",
+      text: "你買了一盒很好吃的點心或飲料要請大家，通常會怎麼分？",
       options: [
-        { val: "E", text: "不管有錢沒錢，只要符合年齡人人都能領，大家一起受惠才不會被貼標籤。" },
-        { val: "T", text: "設下收入門檻，把錢全部集中發給最辛苦的低收入家庭，補助金額加倍。" }
+        { val: "E", text: "不管大家肚子餓不餓，一人一份、大小差不多，最公平也不會有壓力。" },
+        { val: "T", text: "看誰今天最累、還沒吃飯或特別辛苦，把份量多留一點給他。" }
       ]
     },
     {
-      dim: 2,
-      stage: "第三關：人人有獎 vs 集中火力",
-      text: "學校要蓋一間新的自習室，位置有限，你贊成哪種使用規則？",
+      text: "你的書桌、抽屜或手機相簿空間快滿了，你會怎麼整理？",
       options: [
-        { val: "E", text: "先搶先贏或輪流登記，全校同學都有平等使用的權利。" },
-        { val: "T", text: "優先保留給家裡沒地方讀書、或申請清寒助學的同學使用。" }
+        { val: "E", text: "用統一的分類規則或標準去篩選，一視同仁決定留或刪。" },
+        { val: "T", text: "挑出對你特別有意義、或現在最常需要用到的重點優先留下。" }
       ]
     },
     {
-      dim: 2,
-      stage: "第三關：人人有獎 vs 集中火力",
-      text: "你比較認同哪種分蛋糕的方式？",
+      text: "如果有機會抽獎或拿限量小禮物，你的想法比較接近？",
       options: [
-        { val: "E", text: "每個人都切一樣大塊，最公平、也最不會吵架。" },
-        { val: "T", text: "看誰現在肚子最餓，就把最大塊的切給他。" }
+        { val: "E", text: "大家都有機會抽、規則公開透明，沒抽到也認了，重點是參與感。" },
+        { val: "T", text: "希望真正需要或特別喜歡的人能拿到，比平均分配更有意義。" }
       ]
     },
     {
-      dim: 3,
-      stage: "第四關：變強變厲害 vs 活得有尊嚴",
-      text: "你覺得一份「好工作」最重要的條件是什麼？",
+      text: "放假或下課後沒有硬性行程時，哪一種狀態讓你覺得最充實？",
       options: [
-        { val: "C", text: "能學到真本事、升遷快、薪水有成長空間，未來更有競爭力。" },
-        { val: "W", text: "準時下班、氣氛友善、不內耗，有足夠時間陪家人跟做喜歡的事。" }
+        { val: "C", text: "學了一點新東西、把某件事做得比上次更好，覺得自己有在往前走。" },
+        { val: "W", text: "睡到自然醒、發呆、畫畫或做喜歡的事，完全不用趕進度、身心很放鬆。" }
       ]
     },
     {
-      dim: 3,
-      stage: "第四關：變強變厲害 vs 活得有尊嚴",
-      text: "如果朋友決定辭職回家專心照顧生病的家人，你的反應是？",
+      text: "當你連續幾天很忙、很累的時候，你最先在意的通常是？",
       options: [
-        { val: "C", text: "會替他擔心職涯中斷，幫他找找看有沒有政府的喘息服務讓他能繼續上班。" },
-        { val: "W", text: "很佩服他的決定，認為照顧家人本來就是超有價值的事，政府應該發薪水給他。" }
+        { val: "C", text: "進度會不會落後、效率有沒有變差，怕自己掉隊或表現失常。" },
+        { val: "W", text: "自己是不是快撐不住了、情緒有沒有緊繃，想先讓自己好好休息。" }
       ]
     },
     {
-      dim: 3,
-      stage: "第四關：變強變厲害 vs 活得有尊嚴",
-      text: "你理想中的「幸福社會」長什麼樣子？",
+      text: "對你來說，一天結束時最棒的感覺是？",
       options: [
-        { val: "C", text: "每個人都很有能力、社會充滿活力與效率，大家一起把餅做大。" },
-        { val: "W", text: "不管你賺多賺少、有沒有在上班，每個人都能被溫柔對待、有尊嚴地生活。" }
+        { val: "C", text: "今天又解鎖了一個技能或完成一件事，我越來越厲害了！" },
+        { val: "W", text: "今天過得很舒服、沒有委屈自己，我可以安心睡覺了。" }
       ]
     }
   ];
@@ -926,7 +843,6 @@
   const resultScreen = document.getElementById("resultScreen");
   const qNumber = document.getElementById("qNumber");
   const qText = document.getElementById("qText");
-  const stageLabel = document.getElementById("stageLabel");
   const progressText = document.getElementById("progressText");
   const progressFill = document.getElementById("progressFill");
   const optionsContainer = document.getElementById("optionsContainer");
@@ -943,9 +859,8 @@
 
   function renderQuestion(index) {
     const q = QUESTIONS[index];
-    qNumber.textContent = "QUESTION " + String(index + 1).padStart(2, "0");
+    qNumber.textContent = "第 " + String(index + 1).padStart(2, "0") + " 題";
     qText.textContent = q.text;
-    stageLabel.textContent = q.stage;
     progressText.textContent = (index + 1) + " / " + QUESTIONS.length;
     progressFill.style.width = (((index + 1) / QUESTIONS.length) * 100) + "%";
 
@@ -954,7 +869,7 @@
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "option-btn" + (answers[index] === opt.val ? " selected" : "");
-      btn.innerHTML = '<span class="option-letter">' + opt.val + '</span><span class="option-copy">' + opt.text + '</span>';
+      btn.innerHTML = '<span class="option-dot"></span><span class="option-copy">' + opt.text + '</span>';
       btn.addEventListener("click", () => handleSelect(opt.val));
       optionsContainer.appendChild(btn);
     });
@@ -1174,4 +1089,4 @@
   });
 </script>
 </body>
-  </html>
+        </html>
